@@ -70,7 +70,26 @@ namespace LogoQuizGame.Adapter
                     button.Text = suggestSource[position];
                     button.Click += delegate
                     {
-                        //code
+                        string answer = new string(mainActivity.answer);
+                        if (answer.Contains(suggestSource[position]))
+                        {
+                            char compare = suggestSource[position][0];
+
+                            for (int i = 0; i < answer.Length; i++)
+                            {
+                                if (compare == answer[i])
+                                    Common.Common.user.submit_answer[i] = compare; 
+                            }
+
+                            GridViewAnswerAdapter answerAdapter = new GridViewAnswerAdapter(Common.Common.user_submit_answer, this);
+                            mainActivity.gvAnswer.Adapter = answerAdapter;
+                            answerAdapter.NotifyDataSetChanged();
+
+                            mainActivity.suggestSource[position] = "null";
+                            mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource, context, mainActivity);
+                            mainActivity.gvSuggest.Adapter = mainActivity.suggestAdapter;
+                            mainActivity.suggestAdapter.NotifyDataSetChanged();
+                        }
                     };
                 }
             }
