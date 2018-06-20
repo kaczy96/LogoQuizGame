@@ -17,11 +17,19 @@ namespace LogoQuizGame.Adapter
     {
         private char[] answerCharacters;
         private Context context;
+        private object v;
+        private MainActivity mainActivity;
 
         public GridViewAnswerAdapter(char[] answerCharacters, Context context)
         {
             this.answerCharacters = answerCharacters;
             this.context = context;
+        }
+
+        public GridViewAnswerAdapter(object v, MainActivity mainActivity)
+        {
+            this.v = v;
+            this.mainActivity = mainActivity;
         }
 
         public override int Count

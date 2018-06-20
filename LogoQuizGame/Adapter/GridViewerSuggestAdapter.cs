@@ -51,9 +51,9 @@ namespace LogoQuizGame.Adapter
             public override View GetView(int position, View convertView, ViewGroup parent)
             {
             Button button;
-            if (convertView == null)
+            if(convertView == null)
             {
-                if (suggestSource[position].Equals("null"))
+                if(suggestSource[position].Equals("null"))
                 {
                     button = new Button(context);
                     button.LayoutParameters = new GridView.LayoutParams(85, 85);
@@ -70,14 +70,10 @@ namespace LogoQuizGame.Adapter
                     button.Text = suggestSource[position];
                     button.Click += delegate
                     {
-
+                        //code
                     };
                 }
-
             }
-            else
-                button = (Button)convertView;
-            return button;
             }
         }
     }
