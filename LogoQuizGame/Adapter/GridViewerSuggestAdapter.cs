@@ -78,13 +78,20 @@ namespace LogoQuizGame.Adapter
                             for (int i = 0; i < answer.Length; i++)
                             {
                                 if (compare == answer[i])
-                                    Common.Common.user.submit_answer[i] = compare; 
+                                    Common.Common.user_submit_answer[i] = compare; 
                             }
 
-                            GridViewAnswerAdapter answerAdapter = new GridViewAnswerAdapter(Common.Common.user_submit_answer, this);
+                            GridViewAnswerAdapter answerAdapter = new GridViewAnswerAdapter(Common.Common.user_submit_answer, context);
                             mainActivity.gvAnswer.Adapter = answerAdapter;
                             answerAdapter.NotifyDataSetChanged();
 
+                            mainActivity.suggestSource[position] = "null";
+                            mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource, context, mainActivity);
+                            mainActivity.gvSuggest.Adapter = mainActivity.suggestAdapter;
+                            mainActivity.suggestAdapter.NotifyDataSetChanged();
+                        }
+                        else
+                        {
                             mainActivity.suggestSource[position] = "null";
                             mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource, context, mainActivity);
                             mainActivity.gvSuggest.Adapter = mainActivity.suggestAdapter;
